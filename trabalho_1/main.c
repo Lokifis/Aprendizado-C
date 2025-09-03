@@ -38,31 +38,31 @@ int main() {
     acrescimoDependentes = 0.04 * dependentes;
 
     // Acréscimo por anos de casa
-     if (acrescimoAnos > 5) {
-                printf("Funcionário com menos de 3 dependentes não pode ter mais que 5 acréscimos base relativo aos anos de casa!\n");
-                acrescimoAnos = 5;
-     }else{ (dependentes < 3 && anosDeCasa <= 5) {
-            int acrescimoAnos = anosDeCasa / 5;
-                acrescimoAnosDeCasaBase = acrescimoAnos * 0.03;
-            }
-        }else if (dependentes >= 3) {
-            int acrescimoAnos2 = anosDeCasa / 6;
-            if (acrescimoAnos2 > 7) {
-                printf("Funcionário com 3 ou mais dependentes não pode ter mais que 7 acréscimos base relativo aos anos de casa!\n");
-                acrescimoAnos2 = 7;
-                acrescimoAnosDeCasaBase = acrescimoAnos2 * 0.04;
+    if (dependentes < 3) {
+        int acrescimoAnos = anosDeCasa / 5;
+        if (acrescimoAnos > 5) {
+            printf("Funcionário com menos de 3 dependentes não pode ter mais que 5 acréscimos base relativo aos anos de casa!\n");
+            // Limite é 5, logo o seu valor máximo é 5
+            acrescimoAnos = 5;
         }
+        acrescimoAnosDeCasaBase = acrescimoAnos * 0.03;
+    } else {
+        int acrescimoAnos2 = anosDeCasa / 6;
+        if (acrescimoAnos2 > 7) {
+            printf("Funcionário com 3 ou mais dependentes não pode ter mais que 7 acréscimos base relativo aos anos de casa!\n");
+            // Limite é 5, logo o seu valor máximo é 5
+            acrescimoAnos2 = 7;
         }
+        acrescimoAnosDeCasaBase = acrescimoAnos2 * 0.04;
     }
     // Acréscimo por ano bissexto
     if (anoAtual % 4 == 0) {
         acrescimoBissexto = salarioBase * 0.01;
-        valorTotal= acrescimoBissexto+acrescimoDependentes+acrescimoAnosDeCasaBase;
     }
-    //Caso não:
+
     // ' CALCULO:
-        valorTotal = salarioBase + acrescimoDependentes + acrescimoAnosDeCasaBase;
-    //TODO:Colocar valor total caso ano seja bissexto (de uma forma mais eficiente e legivel)
-        printf("\nValor total é: %.2f\n", valorTotal);
+    valorTotal = salarioBase + acrescimoDependentes + acrescimoAnosDeCasaBase + acrescimoBissexto;
+
+    printf("\nValor total é: %.2f\n", valorTotal);
     return 0;
 }
